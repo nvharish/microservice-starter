@@ -1,0 +1,10 @@
+.audit.log
+.outdated.log
+node_modules
+.dockerignore
+.git
+.gitignore
+Dockerfile
+.prettierrc
+.env-example
+package-lock.json

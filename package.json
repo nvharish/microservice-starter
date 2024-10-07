@@ -1,0 +1,50 @@
+{
+    "name": "microservice-starter",
+    "version": "1.0.0",
+    "description": "Microservice framework starter kit.",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "start": "node --no-warnings index.js",
+        "dev": "node --watch index.js",
+        "audit": "npm audit --audit-level=info --json > .audit.log",
+        "audit:fix": "npm audit fix",
+        "outdated": "npm outdated --json > .outdated.log",
+        "outdated:fix": "npm update",
+        "lint": "npx eslint .",
+        "lint:fix": "npx eslint --fix",
+        "test": "mocha"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nvharish/microservice-starter.git"
+    },
+    "keywords": [
+        "microservice",
+        "api",
+        "framework",
+        "node.js",
+        "javascript",
+        "rest",
+        "backend"
+    ],
+    "author": "N V Harish",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "express": "^4.21.0",
+        "jsonwebtoken": "^9.0.2",
+        "jwks-rsa": "^3.1.0",
+        "node-jose": "^2.2.0",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1"
+    },
+    "devDependencies": {
+        "chai": "^5.1.1",
+        "eslint": "^9.12.0",
+        "globals": "^15.10.0",
+        "mocha": "^10.7.3",
+        "sinon": "^19.0.2"
+    }
+}
