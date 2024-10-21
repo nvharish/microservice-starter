@@ -9,9 +9,9 @@
     "scripts": {
         "start": "node --no-warnings index.js",
         "dev": "node --watch index.js",
-        "audit": "npm audit --audit-level=info --json > .audit.log",
+        "audit": "npm audit --audit-level=info --json > audit.log",
         "audit:fix": "npm audit fix",
-        "outdated": "npm outdated --json > .outdated.log",
+        "outdated": "npm outdated --json > outdated.log",
         "outdated:fix": "npm update",
         "lint": "npx eslint .",
         "lint:fix": "npx eslint --fix",

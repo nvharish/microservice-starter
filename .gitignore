@@ -1,5 +1,5 @@
-.audit.log
-.outdated.log
+audit.log
+outdated.log
 node_modules
 .env
 package-lock.json
