@@ -109,4 +109,47 @@ function getKid(jwks = null, kty = 'RSA') {
     return jwk.kid;
 }
 
-module.exports = { verifyJwt, generateJwt, generateJwks };
+function getRequestLog(req) {
+    return {
+        method: req.method,
+        url: req.originalUrl,
+        headers: req.headers,
+        body: req.body,
+    };
+}
+
+function getResponseLog(res) {
+    let responseBody;
+    const send = res.send;
+
+    res.send = function (body) {
+        responseBody = body;
+        return send.apply(res, arguments);
+    };
+
+    return {
+        statusCode: res.statusCode,
+        headers: res.getHeaders(),
+        body: responseBody,
+    };
+}
+
+function getErrorLog(err, req, res) {
+    return {
+        requestId: crypto.randomUUID(),
+        request: getRequestLog(req),
+        response: getResponseLog(res),
+        message: err.message,
+        headers: err.headers ?? null,
+        stack: err.stack,
+    };
+}
+
+module.exports = {
+    verifyJwt,
+    generateJwt,
+    generateJwks,
+    getRequestLog,
+    getResponseLog,
+    getErrorLog,
+};
