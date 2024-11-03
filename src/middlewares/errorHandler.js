@@ -1,17 +1,19 @@
-const logger = require('../lib/logger');
-const { getErrorLog } = require('../lib/utils');
+const {
+    responseStatus,
+    httpStatusCodes,
+    httpStatusMessages,
+} = require('../lib/constants');
 
-module.exports = function (err, req, res, next) {
-    const logData = getErrorLog(err, req, res);
-
-    logger.error(JSON.stringify(logData, null, 2));
+module.exports = function (err, _req, res, next) {
+    res.locals.errorMessage = err.message;
+    res.locals.errorStack = err.stack;
 
     if (res.headersSent) {
         return next(err);
     }
 
-    res.status(err.statusCode ?? 500).json({
-        status: 'ERROR',
-        error: res.statusMessage ?? 'Internal server error',
+    res.status(err.statusCode ?? httpStatusCodes.INTERNAL_SERVER_ERROR).json({
+        status: responseStatus.ERROR,
+        error: err.statusMessage ?? httpStatusMessages.INTERNAL_SERVER_ERROR,
     });
 };
